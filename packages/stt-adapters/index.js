@@ -7,6 +7,7 @@ import digitalPaperEditToDraft from './digital-paper-edit/index';
 import createEntityMap from './create-entity-map/index';
 import gcpSttToDraft from './google-stt/index';
 import lectureTranslator2ToDraft from './lecture-translator';
+import vttToDraft from './vtt';
 
 /**
  * Adapters for STT conversion
@@ -51,6 +52,11 @@ const sttJsonAdapter = (transcriptData, sttJsonType) => {
 
   case 'lectureTranslator':
     blocks = lectureTranslator2ToDraft(transcriptData);
+
+    return { blocks, entityMap: createEntityMap(blocks) };
+
+  case 'vtt':
+    blocks = vttToDraft(transcriptData);
 
     return { blocks, entityMap: createEntityMap(blocks) };
 

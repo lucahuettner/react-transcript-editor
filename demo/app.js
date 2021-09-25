@@ -104,7 +104,7 @@ class App extends React.Component {
 
       fileReader.readAsText(file);
 
-    } else if (file.type === 'text/plain') {
+    } else if (file.type === 'text/plain' || file.name.endsWith('.vtt')) {
       const fileReader = new FileReader();
       console.log('okay');
       fileReader.onload = event => {

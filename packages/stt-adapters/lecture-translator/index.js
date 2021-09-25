@@ -43,6 +43,8 @@ const groupWordsInParagraphs = (lectureTranslatorText) => {
   if (paragraph.words.length !== 0) {
     results.push(paragraph);
   }
+  console.log('results:');
+  console.log(results);
 
   return results;
   ;
