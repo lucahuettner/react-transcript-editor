@@ -29,7 +29,7 @@ class App extends React.Component {
       mediaUrl: null,
       isTextEditable: true,
       spellCheck: false,
-      sttType: 'lectureTranslator',
+      sttType: 'vtt',
       analyticsEvents: [],
       title: '',
       fileName: '',
@@ -347,7 +347,7 @@ class App extends React.Component {
           mediaType={ 'video' }
         />
 
-        <section style={ { height: '250px', width: '50%', float: 'left' } }>
+        {/* <section style={ { height: '250px', width: '50%', float: 'left' } }>
           <h3>Components Analytics</h3>
           <textarea
             style={ { height: '100%', width: '100%' } }
@@ -372,7 +372,7 @@ class App extends React.Component {
             }
             disabled
           />
-        </section>
+        </section> */}
       </div>
     );
   }

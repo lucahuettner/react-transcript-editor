@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const ExportFormatSelect = props => {
   return <select className={ props.className } name={ props.name } value={ props.value } onChange={ props.handleChange }>
+    <option value="vtt">VTT - Captions</option>
     <option value="draftjs">Draft Js</option>
     <option value="txt">Text file</option>
     <option value="txtspeakertimecodes">Text file - with Speakers and Timecodes</option>
@@ -14,7 +15,6 @@ const ExportFormatSelect = props => {
     <option value="premiereTTML">TTML for Adobe Premiere - Captions</option>
     <option value="itt">iTT - Captions</option>
     <option value="csv">CSV - Captions</option>
-    <option value="vtt">VTT - Captions</option>
     <option value="pre-segment-txt">Pre-segment-txt - Captions</option>
     <option value="docx">MS Word</option>
     <option value="json-captions">Json - Captions</option>

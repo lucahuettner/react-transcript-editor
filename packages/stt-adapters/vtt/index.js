@@ -6,7 +6,6 @@
 import generateEntitiesRanges from '../generate-entities-ranges/index';
 
 function processParagraph(pStart, pEnd, pContent) {
-  console.log('processing Prargraph');
   const paragraph = { words: [], text: pContent };
   let cChar = 0;
   const sumChars = pContent.reduce((total, word) => total + word.length, 0);
@@ -57,6 +56,7 @@ const groupWordsInParagraphs = (vttText) => {
   for (let vttLine of vttLines) {
     // e.g. '00:00:31.979 --> 00:00:38.409'
     vttLine = vttLine.trim();
+    if (!isNaN(vttLine)) { continue; }
     if (vttLine.includes('-->')) {
       if (pContent == undefined) {
         pContent = [];
