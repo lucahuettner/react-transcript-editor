@@ -35,7 +35,9 @@ class App extends React.Component {
       fileName: '',
       autoSaveData: {},
       autoSaveContentType: 'draftjs',
-      autoSaveExtension: 'json'
+      autoSaveExtension: 'json',
+      exportFormat: 'vtt',
+      exportName: 'export'
     };
 
     this.transcriptEditorRef = React.createRef();
@@ -93,6 +95,7 @@ class App extends React.Component {
     const file = files[0];
     console.log(file);
     console.log('read ' + file.type);
+    this.setState({ exportName: file.name.split('.')[0] });
     if (file.type === 'application/json') {
       const fileReader = new FileReader();
       console.log('okay');
@@ -163,7 +166,7 @@ class App extends React.Component {
       tmpData = JSON.stringify(data, null, 2);
     }
     if (ext !== 'docx') {
-      this.download(tmpData, `${ this.state.mediaUrl }.${ ext }`);
+      this.download(tmpData, `${ this.state.exportName }_corrected.${ ext }`);
     }
   };
 
