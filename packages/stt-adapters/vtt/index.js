@@ -57,6 +57,10 @@ const groupWordsInParagraphs = (vttText) => {
     // e.g. '00:00:31.979 --> 00:00:38.409'
     vttLine = vttLine.trim();
     if (!isNaN(vttLine)) { continue; }
+    if (vttLine.startsWith('NOTE ')) { continue; }
+    if (vttLine.startsWith('- ')) {
+      vttLine = vttLine.slice(2);
+    }
     if (vttLine.includes('-->')) {
       if (pContent == undefined) {
         pContent = [];
