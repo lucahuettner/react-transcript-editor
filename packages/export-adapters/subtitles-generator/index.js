@@ -55,6 +55,7 @@ function preSegmentTextJson(wordsList, numberOfCharPerLine) {
 
 function subtitlesComposer({ words, type, numberOfCharPerLine }) {
   const subtitlesJson = preSegmentTextJson(words, numberOfCharPerLine);
+  console.log(subtitlesJson);
   if (typeof words === 'string') {
     return preSegmentText(words, numberOfCharPerLine);
   }

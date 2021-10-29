@@ -5,6 +5,7 @@
  */
 export default (blockData) => {
   const result = { words: [], paragraphs: [] };
+  console.log(blockData);
 
   blockData.blocks.forEach((block, index) => {
     if (block.data.words !== undefined) {
@@ -44,6 +45,7 @@ export default (blockData) => {
       result.words = result.words.concat(tmpWords);
     }
   });
+  console.log(result);
 
   return result;
 };

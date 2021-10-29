@@ -91,6 +91,7 @@ const groupWordsInParagraphs = (vttText) => {
   paragraph = processParagraph(pStart, pEnd, pContent);
   // append paragraph to results
   results.push(paragraph);
+  console.log(results);
 
   return results;
 };

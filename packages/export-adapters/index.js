@@ -3,6 +3,8 @@ import draftToDocx from './docx/index';
 import draftToTxtSpeakersTimecodes from './txt-speakers-timecodes/index';
 import draftToDigitalPaperEdit from './draftjs-to-digital-paper-edit/index.js';
 import subtitlesGenerator from './subtitles-generator/index.js';
+
+import generateVttString from './subtitles-generator/vtt';
 /**
  * Adapters for Draft.js conversion
  * @param {json} blockData - Draft.js blocks
@@ -49,8 +51,10 @@ const exportAdapter = (blockData, exportFormat, transcriptTitle) => {
 
     return { data: content, ext: 'csv' };
   case 'vtt':
-    var { words } = draftToDigitalPaperEdit(blockData);
-    var content = subtitlesGenerator({ words, type: 'vtt' });
+    //var { words } = draftToDigitalPaperEdit(blockData);
+    //var content = subtitlesGenerator({ words, type: 'vtt' });
+    var info = draftToDigitalPaperEdit(blockData);
+    var content = generateVttString(info);
 
     return { data: content, ext: 'vtt' };
   case 'json-captions':
