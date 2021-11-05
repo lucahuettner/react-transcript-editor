@@ -95,6 +95,11 @@ body {
   &:hover {
     background-color: #4f7bc0;
   }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
 }
 
 .warningButton {

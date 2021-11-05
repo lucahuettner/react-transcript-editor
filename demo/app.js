@@ -21,6 +21,7 @@ const DEMO_TITLE =
 import style from './index.module.scss';
 
 class App extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -37,10 +38,22 @@ class App extends React.Component {
       autoSaveContentType: 'draftjs',
       autoSaveExtension: 'json',
       exportFormat: 'vtt',
-      exportName: 'export'
+      exportName: 'export',
+      lastSessions: [],
+      selectedSession: ''
     };
 
     this.transcriptEditorRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const sessions = Object.keys(localStorage).filter((item) => item.startsWith('draftJs'));
+    if (sessions.length > 0) {
+      this.setState({
+        lastSessions: sessions,
+        selectedSession: sessions[0].substr(8)
+      });
+    }
   }
 
   loadDemo = () => {
@@ -63,6 +76,16 @@ class App extends React.Component {
     }
 
   };
+
+  loadSession = () => {
+    const transcriptDataFromLocalStorage = loadLocalSavedData(this.state.selectedSession);
+    this.setState({
+      transcriptData: transcriptDataFromLocalStorage,
+      mediaUrl: this.state.selectedSession,
+      title: this.state.selectedSession,
+      sttType: 'draftjs'
+    });
+  }
 
   // https://stackoverflow.com/questions/8885701/play-local-hard-drive-video-file-with-html5-video-tag
   handleLoadMedia = files => {
@@ -155,6 +178,10 @@ class App extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleSessionChange = event => {
+    this.setState({ selectedSession: event.target.value });
+  }
+
   exportTranscript = () => {
     console.log('export');
     // eslint-disable-next-line react/no-string-refs
@@ -231,6 +258,18 @@ class App extends React.Component {
               onClick={ () => this.loadDemo() }
             >
               Load Demo
+            </button>
+            <select name='selectedSession' defaultValue={ this.state.selectedSession } onChange={ this.handleSessionChange }>
+              {
+                this.state.lastSessions.map( (session) =>
+                  <option key={ session }>{session.substr(8)}</option> )
+              }
+            </select>
+            <button
+              onClick={ () => this.loadSession() }
+              disabled={ this.state.selectedSession == '' }
+            >
+              Load Session
             </button>
           </section>
 
